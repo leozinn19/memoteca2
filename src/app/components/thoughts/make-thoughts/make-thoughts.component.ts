@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Thought } from '../thought';
 import { ThoughtService } from '../thought.service';
@@ -15,10 +16,20 @@ export class MakeThoughtsComponent implements OnInit {
     modelo: '',
   };
 
-  constructor(private service: ThoughtService, private router: Router) {}
+  formulario!: FormGroup;
+
+  constructor(
+    private service: ThoughtService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.formulario = this.formBuilder.group({
+      conteudo: ['Formulário reativo'],
+      autoria: [''],
+      modelo: ['modelo1'],
+    });
   }
 
   criarPensamento() {
